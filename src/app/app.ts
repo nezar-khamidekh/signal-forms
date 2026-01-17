@@ -1,12 +1,37 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { User } from './models/user';
+import { form, FormField } from '@angular/forms/signals';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [FormField],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrl: './app.css',
 })
 export class App {
-  protected readonly title = signal('signal-forms');
+  readonly #user = signal<User>({
+    name: '',
+    surname: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+    notifyByPhone: false,
+    phone: '',
+  });
+
+  protected readonly signupForm = form(this.#user);
+
+  constructor() {
+    setTimeout(() => {
+      this.#user.set({
+        name: 'TEST',
+        surname: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+        notifyByPhone: true,
+        phone: '',
+      });
+    }, 3000);
+  }
 }

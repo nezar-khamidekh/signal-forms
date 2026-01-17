@@ -1,0 +1,58 @@
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  text-align: left;
+}
+
+h3 {
+  font-weight: 600;
+  margin: 20px 0 20px 0;
+}
+
+.form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 10px;
+  padding: 20px;
+  border: 1px solid lightgray;
+  max-width: 500px;
+  width: 100%;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  text-align: left;
+  width: 100%;
+  margin-top: 20px;
+
+  input[type='checkbox'] {
+    width: auto;
+  }
+}
+
+.input {
+  width: 100%;
+  margin-top: 5px;
+}
+
+.button {
+  background: #07a4ff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  color: white;
+  width: 100%;
+  margin-top: 20px;
+
+  &:hover {
+    background: #0069d2;
+  }
+}
