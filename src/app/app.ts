@@ -1,6 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { User } from './models/user';
 import { form, FormField } from '@angular/forms/signals';
+import { signupFormSchema } from './validators/signup-form-schema';
 
 @Component({
   selector: 'app-root',
@@ -19,19 +20,9 @@ export class App {
     phone: '',
   });
 
-  protected readonly signupForm = form(this.#user);
+  protected readonly signupForm = form(this.#user, signupFormSchema);
 
-  constructor() {
-    setTimeout(() => {
-      this.#user.set({
-        name: 'TEST',
-        surname: '',
-        email: '',
-        password: '',
-        confirmPassword: '',
-        notifyByPhone: true,
-        phone: '',
-      });
-    }, 3000);
+  protected createUser(): void {
+    console.log(this.signupForm().value());
   }
 }

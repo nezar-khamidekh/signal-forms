@@ -1,6 +1,6 @@
-<h3>User Signup Signal Form</h3>
+<h3>Создать аккаунт</h3>
 
-<form class="form">
+<form class="form" (ngSubmit)="createUser()">
   <label class="label" for="name">Имя</label>
   <input
     id="name"
@@ -9,6 +9,12 @@
     [formField]="signupForm.name"
     placeholder="Введите имя"
   />
+  @if (signupForm.name().touched()) {
+    @for (error of signupForm.name().errors(); track error.kind) {
+      <span class="error">{{ error.message }}</span>
+    }
+  }
+
   <label class="label" for="surname">Фамилия</label>
   <input
     id="surname"
@@ -17,6 +23,12 @@
     [formField]="signupForm.surname"
     placeholder="Введите фамилию"
   />
+  @if (signupForm.surname().touched()) {
+    @for (error of signupForm.surname().errors(); track error.kind) {
+      <span class="error">{{ error.message }}</span>
+    }
+  }
+
   <label class="label" for="email">Email</label>
   <input
     id="email"
@@ -25,6 +37,12 @@
     [formField]="signupForm.email"
     placeholder="Введите email"
   />
+  @if (signupForm.email().touched()) {
+    @for (error of signupForm.email().errors(); track error.kind) {
+      <span class="error">{{ error.message }}</span>
+    }
+  }
+
   <label class="label" for="password">Пароль</label>
   <input
     id="password"
@@ -33,6 +51,12 @@
     [formField]="signupForm.password"
     placeholder="Введите пароль"
   />
+  @if (signupForm.password().touched()) {
+    @for (error of signupForm.password().errors(); track error.kind) {
+      <span class="error">{{ error.message }}</span>
+    }
+  }
+
   <label class="label" for="confirmPassword">Повторите пароль</label>
   <input
     id="confirmPassword"
@@ -40,43 +64,36 @@
     type="password"
     [formField]="signupForm.confirmPassword"
   />
+  @for (error of signupForm.confirmPassword().errors(); track error.kind) {
+    <span class="error">{{ error.message }}</span>
+  }
+
   <label class="label" for="notifyByPhone"
     >Получать уведомления на телефон
     <input id="notifyByPhone" class="input" type="checkbox" [formField]="signupForm.notifyByPhone"
   /></label>
 
-  @if(signupForm.notifyByPhone().value()){
-  <label class="label" for="phone">Телефон</label>
-  <input
-    id="phone"
-    class="input"
-    type="phone"
-    [formField]="signupForm.phone"
-    placeholder="Введите телефон"
-  />
+  @if (signupForm.notifyByPhone().value()) {
+    <label class="label" for="phone">Телефон</label>
+    <input
+      id="phone"
+      class="input"
+      type="phone"
+      [formField]="signupForm.phone"
+      placeholder="Введите телефон"
+    />
+    @if (signupForm.phone().touched()) {
+      @for (error of signupForm.phone().errors(); track error.kind) {
+        <span class="error">{{ error.message }}</span>
+      }
+    }
   }
 
-  <button class="button" type="submit">Зарегистрироваться</button>
+  <button
+    class="button"
+    [disabled]="signupForm().submitting() || signupForm().invalid()"
+    type="submit"
+  >
+    Создать
+  </button>
 </form>
-<!-- <button [disabled]="signupForm().submitting() || !signupForm().valid()" type="submit">
-    Зарегистрироваться
-  </button> -->
-<!-- <form (submit)="onSubmit($event)">
-  <input [control]="signupForm.firstName" placeholder="Enter Your Name" type="text" />
-  @for (error of signupForm.firstName().errors(); track $index) {
-  <div class="error">{{ error.message }}</div>
-  }
-  <input [control]="signupForm.lastName" placeholder="Your Last Name" type="text" />
-  @for (error of signupForm.lastName().errors(); track $index) {
-  <div class="error">{{ error.message }}</div>
-  }
-  <input [control]="signupForm.email" placeholder="Provide valid Email" type="email" />
-  @for (error of signupForm.email().errors(); track $index) {
-  <div class="error">{{ error.message }}</div>
-  }
-  <label>
-    Notify By Email:
-    <input [control]="signupForm.notifyByEmail" type="checkbox" />
-  </label>
-  
-</form> -->
