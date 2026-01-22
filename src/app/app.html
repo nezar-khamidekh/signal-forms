@@ -1,6 +1,6 @@
 <h3>Создать аккаунт</h3>
 
-<form class="form" (ngSubmit)="createUser()">
+<form class="form" (submit)="createUser($event)">
   <label class="label" for="name">Имя</label>
   <input
     id="name"

@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { User } from './models/user';
-import { form, FormField } from '@angular/forms/signals';
+import { form, FormField, submit } from '@angular/forms/signals';
 import { signupFormSchema } from './validators/signup-form-schema';
 
 @Component({
@@ -22,7 +22,36 @@ export class App {
 
   protected readonly signupForm = form(this.#user, signupFormSchema);
 
-  protected createUser(): void {
-    console.log(this.signupForm().value());
+  protected createUser(event: Event): void {
+    submit(this.signupForm, async (form) => {
+      try {
+        await Promise.resolve({ success: true });
+        // await Promise.reject({ success: false });
+
+        form().reset({
+          name: '',
+          surname: '',
+          email: '',
+          password: '',
+          confirmPassword: '',
+          notifyByPhone: false,
+          phone: '',
+        });
+
+        return undefined;
+      } catch (error) {
+        console.log(error);
+
+        return [
+          {
+            fieldTree: form.email,
+            kind: 'server',
+            message: 'Пользователь с таким email уже существует',
+          },
+        ];
+      }
+    });
+
+    event.preventDefault();
   }
 }
