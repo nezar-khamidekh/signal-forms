@@ -73,7 +73,7 @@
     <input id="notifyByPhone" class="input" type="checkbox" [formField]="signupForm.notifyByPhone"
   /></label>
 
-  @if (signupForm.notifyByPhone().value()) {
+  @if (!signupForm.phone().hidden()) {
     <label class="label" for="phone">Телефон</label>
     <input
       id="phone"

@@ -24,7 +24,11 @@ export class App {
 
   protected createUser(event: Event): void {
     submit(this.signupForm, async (form) => {
+      event.preventDefault();
+
       try {
+        console.log(form().value());
+
         await Promise.resolve({ success: true });
         // await Promise.reject({ success: false });
 
@@ -51,7 +55,5 @@ export class App {
         ];
       }
     });
-
-    event.preventDefault();
   }
 }

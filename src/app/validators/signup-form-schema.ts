@@ -1,4 +1,4 @@
-import { email, pattern, required, schema, validateTree } from '@angular/forms/signals';
+import { email, hidden, pattern, required, schema, validateTree } from '@angular/forms/signals';
 import { User } from '../models/user';
 
 export const signupFormSchema = schema<User>((path) => {
@@ -36,8 +36,8 @@ export const signupFormSchema = schema<User>((path) => {
     return null;
   });
 
+  hidden(path.phone, ({ valueOf }) => !valueOf(path.notifyByPhone));
   required(path.phone, {
-    when: ({ valueOf }) => valueOf(path.notifyByPhone),
     message: 'Это поле обязательно',
   });
   pattern(path.phone, /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/, {
