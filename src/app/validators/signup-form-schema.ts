@@ -53,5 +53,5 @@ export const signupFormSchema = schema<User>((path) => {
   });
 
   required(path.gender);
-  disabled(path.gender, ({ valueOf }) => !valueOf(path.email));
+  disabled(path.gender, ({ valueOf }) => !valueOf(path.name) || !valueOf(path.surname));
 });
