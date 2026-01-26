@@ -36,11 +36,11 @@ export const signupFormSchema = schema<User>((path) => {
     return null;
   });
 
-  hidden(path.phone, ({ valueOf }) => !valueOf(path.notifyByPhone));
-  required(path.phone, {
+  hidden(path.phone.phoneNumber, ({ valueOf }) => !valueOf(path.phone.notifyEnabled));
+  required(path.phone.phoneNumber, {
     message: 'Это поле обязательно',
   });
-  pattern(path.phone, /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/, {
+  pattern(path.phone.phoneNumber, /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/, {
     message: 'Введите корректный номер телефона',
   });
 });

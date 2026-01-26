@@ -70,19 +70,23 @@
 
   <label class="label" for="notifyByPhone"
     >Получать уведомления на телефон
-    <input id="notifyByPhone" class="input" type="checkbox" [formField]="signupForm.notifyByPhone"
+    <input
+      id="notifyByPhone"
+      class="input"
+      type="checkbox"
+      [formField]="signupForm.phone.notifyEnabled"
   /></label>
 
-  @if (!signupForm.phone().hidden()) {
+  @if (!signupForm.phone.phoneNumber().hidden()) {
     <label class="label" for="phone">Телефон</label>
     <input
       id="phone"
       class="input"
-      type="phone"
-      [formField]="signupForm.phone"
+      type="text"
+      [formField]="signupForm.phone.phoneNumber"
       placeholder="Введите телефон"
     />
-    @if (signupForm.phone().touched()) {
+    @if (signupForm.phone.phoneNumber().touched()) {
       @for (error of signupForm.phone().errors(); track error.kind) {
         <span class="error">{{ error.message }}</span>
       }

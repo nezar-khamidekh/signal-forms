@@ -16,8 +16,10 @@ export class App {
     email: '',
     password: '',
     confirmPassword: '',
-    notifyByPhone: false,
-    phone: '',
+    phone: {
+      notifyEnabled: false,
+      phoneNumber: '',
+    },
   });
 
   protected readonly signupForm = form(this.#user, signupFormSchema);
@@ -38,8 +40,10 @@ export class App {
           email: '',
           password: '',
           confirmPassword: '',
-          notifyByPhone: false,
-          phone: '',
+          phone: {
+            notifyEnabled: false,
+            phoneNumber: '',
+          },
         });
 
         return undefined;

@@ -4,6 +4,8 @@ export interface User {
   email: string;
   password: string;
   confirmPassword: string;
-  notifyByPhone: boolean;
-  phone: string;
+  phone: {
+    notifyEnabled: boolean;
+    phoneNumber: string;
+  };
 }
