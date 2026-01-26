@@ -1,4 +1,12 @@
-import { email, hidden, pattern, required, schema, validateTree } from '@angular/forms/signals';
+import {
+  disabled,
+  email,
+  hidden,
+  pattern,
+  required,
+  schema,
+  validateTree,
+} from '@angular/forms/signals';
 import { User } from '../models/user';
 
 export const signupFormSchema = schema<User>((path) => {
@@ -43,4 +51,7 @@ export const signupFormSchema = schema<User>((path) => {
   pattern(path.phone.phoneNumber, /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/, {
     message: 'Введите корректный номер телефона',
   });
+
+  required(path.gender);
+  disabled(path.gender, ({ valueOf }) => !valueOf(path.email));
 });

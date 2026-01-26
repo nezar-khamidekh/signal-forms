@@ -2,10 +2,11 @@ import { Component, signal } from '@angular/core';
 import { User } from './models/user';
 import { form, FormField, submit } from '@angular/forms/signals';
 import { signupFormSchema } from './validators/signup-form-schema';
+import { GenderControl } from './components/gender-control/gender-control';
 
 @Component({
   selector: 'app-root',
-  imports: [FormField],
+  imports: [FormField, GenderControl],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
@@ -20,6 +21,7 @@ export class App {
       notifyEnabled: false,
       phoneNumber: '',
     },
+    gender: null,
   });
 
   protected readonly signupForm = form(this.#user, signupFormSchema);
@@ -44,6 +46,7 @@ export class App {
             notifyEnabled: false,
             phoneNumber: '',
           },
+          gender: null,
         });
 
         return undefined;

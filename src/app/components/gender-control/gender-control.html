@@ -1,0 +1,7 @@
+<span [class.required]="required()">Пол</span>
+
+@for (gender of genders(); track $index) {
+  <div class="gender" [class.gender_selected]="isSelected(gender)" (click)="value.set(gender)">
+    {{ gender.name }}
+  </div>
+}

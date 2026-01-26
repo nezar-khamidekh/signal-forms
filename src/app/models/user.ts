@@ -1,3 +1,5 @@
+import { GenderType } from '../components/gender-control/gender-control';
+
 export interface User {
   name: string;
   surname: string;
@@ -8,4 +10,5 @@ export interface User {
     notifyEnabled: boolean;
     phoneNumber: string;
   };
+  gender: GenderType | null;
 }
