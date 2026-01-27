@@ -66,8 +66,10 @@
     type="password"
     [formField]="signupForm.confirmPassword"
   />
-  @for (error of signupForm.confirmPassword().errors(); track error.kind) {
-    <span class="error">{{ error.message }}</span>
+  @if (signupForm.password().touched() || signupForm.confirmPassword().touched()) {
+    @for (error of signupForm.confirmPassword().errors(); track error.kind) {
+      <span class="error">{{ error.message }}</span>
+    }
   }
 
   <label class="label" for="notifyByPhone"
@@ -95,11 +97,5 @@
     }
   }
 
-  <button
-    class="button"
-    [disabled]="signupForm().submitting() || signupForm().invalid()"
-    type="submit"
-  >
-    Создать
-  </button>
+  <button class="button" type="submit">Создать</button>
 </form>
