@@ -89,7 +89,7 @@
       placeholder="Введите телефон"
     />
     @if (signupForm.phone.phoneNumber().touched()) {
-      @for (error of signupForm.phone().errors(); track error.kind) {
+      @for (error of signupForm.phone.phoneNumber().errors(); track error.kind) {
         <span class="error">{{ error.message }}</span>
       }
     }
