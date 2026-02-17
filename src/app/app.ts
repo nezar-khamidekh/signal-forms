@@ -27,9 +27,9 @@ export class App {
   protected readonly signupForm = form(this.#user, signupFormSchema);
 
   protected createUser(event: Event): void {
-    submit(this.signupForm, async (form) => {
-      event.preventDefault();
+    event.preventDefault();
 
+    submit(this.signupForm, async (form) => {
       try {
         console.log(form().value());
 
@@ -57,7 +57,7 @@ export class App {
           {
             fieldTree: form.email,
             kind: 'server',
-            message: 'Пользователь с таким email уже существует',
+            message: 'Пользователь с таким адресом электронной почты уже существует',
           },
         ];
       }

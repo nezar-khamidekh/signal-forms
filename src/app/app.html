@@ -31,13 +31,13 @@
 
   <gender-control [formField]="signupForm.gender" />
 
-  <label class="label" for="email">Email</label>
+  <label class="label" for="email">Адрес электронной почты</label>
   <input
     id="email"
     class="input"
     type="email"
     [formField]="signupForm.email"
-    placeholder="Введите email"
+    placeholder="Введите адрес электронной почты"
   />
   @if (signupForm.email().touched()) {
     @for (error of signupForm.email().errors(); track error.kind) {

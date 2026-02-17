@@ -14,7 +14,7 @@ export const signupFormSchema = schema<User>((path) => {
   required(path.surname, { message: 'Это поле обязательно' });
 
   required(path.email, { message: 'Это поле обязательно' });
-  email(path.email, { message: 'Введите корректный email' });
+  email(path.email, { message: 'Введите корректный адрес электронной почты' });
 
   required(path.password, { message: 'Это поле обязательно' });
   pattern(path.password, /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/, {
